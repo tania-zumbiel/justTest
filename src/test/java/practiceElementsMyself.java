@@ -24,15 +24,17 @@ public class practiceElementsMyself {
 
        openBrowser();
        navigateToMainPage();
-       addButton();
-        //typeQuory();
-        //submitSearch();
-        //assertResultsPage();
-        //waitForResultsElement();
+       clickButton();
+       deleteAddedButton();
 
     }
 
-    private void addButton() {
+    private void deleteAddedButton() {
+        String selector = ".added-manually";
+        driver.findElement(By.cssSelector(selector)).click();
+    }
+
+    private void clickButton() {
         String selector = ".example > button:nth-child(1)";
         driver.findElement(By.cssSelector(selector)).click();
     }
