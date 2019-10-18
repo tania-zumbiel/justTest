@@ -16,7 +16,7 @@ public class GoogleSearchTests {
     WebDriver driver;
     String resultsStatsID = "resultStats";
 
-    
+
 
     @AfterSuite
     public void afterSuit(){

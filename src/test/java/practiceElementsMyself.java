@@ -16,11 +16,10 @@ import java.util.concurrent.TimeUnit;
 public class practiceElementsMyself {
     WebDriver driver;
 
-
+//add and delete buttons
     @Test
     public void test0111() {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\artan\\IdeaProjects\\septTestNG\\src\\test\\resources\\drivers\\geckodriver.exe");
-
 
        openBrowser();
        navigateToMainPage();
