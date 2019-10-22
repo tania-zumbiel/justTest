@@ -5,41 +5,56 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPageTest {
+
+public class CheckBoxesTest {
     WebDriver driver;
 
-    @Test
-    public void test0111() {
+    @BeforeSuite
+    public void setUp() {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\artan\\IdeaProjects\\septTestNG\\src\\test\\resources\\drivers\\geckodriver.exe");
+        driver = new FirefoxDriver();
+    }
+
+    @Test
+    public void testCheckBoxes(){
 
         openBrowser();
-        navigateToTestPage();
-        findElementById();
+        navigateToMainPage();
+        getNumberOfInputs();
 
     }
 
-    private void findElementById() {
-        driver.findElement(By.id("username")).sendKeys("tomsmith");
-        driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
-        String selector = "html.no-js body div.row div#content.large-12.columns div.example form#login button.radius i.fa.fa-2x.fa-sign-in";
-        driver.findElement(By.cssSelector(selector)).click();
+    private void getNumberOfInputs() {
+        List<WebElement> listOfInputs = driver.findElements(By.tagName("input"));
+        int numberOfInputs = listOfInputs.size();
+        Assert.assertTrue(numberOfInputs ==2);
     }
 
-
-    private void navigateToTestPage() {
-        String url = "https://the-internet.herokuapp.com/login";
+    private void navigateToMainPage() {
+        String url = "https://the-internet.herokuapp.com/checkboxes";
         driver.get(url);
     }
 
-    private void openBrowser() {
+    private void openBrowser(){
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
+
+    @AfterSuite
+    public void afterSuit(){
+        //driver.quit();
+    }
+
+
 }
